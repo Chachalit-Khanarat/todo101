@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 const PORT = 15000;
 
-const mongoURL = process.env.MONGO_URL || 'mongodb://localhost:27017/todos';
+const mongoURL = process.env.MONGO_URL || 'mongodb://mongo:27017/todos';
 
 app.use(cors());
 app.use(express.json());
@@ -14,6 +14,19 @@ const Task = mongoose.model('Task', new mongoose.Schema({
   text : String,
   complete : Boolean
 }))
+
+// Root route
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Todo API is running!',
+    endpoints: {
+      'GET /tasks': 'Get all tasks',
+      'POST /tasks': 'Create a new task',
+      'PUT /tasks/:id': 'Update a task',
+      'DELETE /tasks/:id': 'Delete a task'
+    }
+  });
+});
 
 app.get('/tasks', async (req, res) => {
   const tasks = await Task.find();

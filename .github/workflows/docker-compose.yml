@@ -26,11 +26,11 @@ jobs:
     
     - name: tag and push backend image
       run: |
-        docker tag todo-backend chachalitkh/todo-backend:latest
+        docker tag todo101-todo-backend:latest chachalitkh/todo-backend:latest
         docker push chachalitkh/todo-backend:latest
 
     - name: tag and push frontend image
       run: |
-        docker tag todo-frontend chachalitkh/todo-frontend:latest
+        docker tag todo101-todo-frontend:latest chachalitkh/todo-frontend:latest
         docker push chachalitkh/todo-frontend:latest
       
